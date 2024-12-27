@@ -1,0 +1,13 @@
+
+.idea/
+cmake-build-*/
+*.log
+*.obj
+*.o
+*.a
+*.so
+*.dll
+*.exe
+*.out
+*.dSYM/
+build.ninja
