@@ -1,8 +1,12 @@
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include "Button.h"
 #include "HeaderLogo.h"
 #include "Screens.h"
 #include "DimensionButtons.h"
+#include "../Logic/Rules.h"
+#include "../Game/PexesoGrid.h"
+
 #ifndef PEXESO_WINDOW_H
 #define PEXESO_WINDOW_H
 
@@ -19,6 +23,12 @@ private:
     Button startButton;
     DimensionButtons rowButtons;
     DimensionButtons columnButtons;
+    Rules rules;
+    PexesoGrid grid;
+    int rowSize = 2;
+    int colSize = 2;
+    void setRowSize(int row);
+    void setColSize(int col);
 public:
     Window();
     ~Window();
@@ -26,6 +36,8 @@ public:
     void run();
     void changeScreen(Screen newScreen);
     void drawScreens();
+    void checkPairs();
+    void gameStart();
 };
 
 #endif //PEXESO_WINDOW_H

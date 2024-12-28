@@ -19,18 +19,12 @@ class DimensionButtons {
 private:
     std::vector<Button> buttons;
     int selectedIndex = -1;
-
+    void highlightButton(size_t index);
 public:
     DimensionButtons(const sf::Vector2f& startPosition, const sf::Vector2f& buttonSize, int count, const sf::Font& font);
-
     void draw(sf::RenderWindow& window);
     void handleEvent(const sf::Event& event, sf::RenderWindow& window);
-
     int getSelectedIndex() const;
-    bool canMakePair();
-
-private:
-    void highlightButton(size_t index);
 };
 
 

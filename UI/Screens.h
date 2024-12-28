@@ -9,7 +9,8 @@ enum class Screen {
     Singleplayer,
     Multiplayer,
     Quit,
-    Game
+    GameSingle,
+    GameMulti
 };
 
 #endif //PEXESO_SCREENS_H
