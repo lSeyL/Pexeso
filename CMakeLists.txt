@@ -11,5 +11,7 @@ find_package(SFML COMPONENTS system window graphics network main REQUIRED)
 add_executable(Pexeso main.cpp
         UI/Window.cpp
         UI/Button.cpp
-        UI/HeaderLogo.cpp)
+        UI/HeaderLogo.cpp
+        UI/Screens.h
+        UI/DimensionButtons.cpp)
 target_link_libraries(Pexeso sfml-system sfml-window sfml-graphics sfml-network sfml-main pthread)

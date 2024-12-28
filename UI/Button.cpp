@@ -38,3 +38,7 @@ bool Button::isClicked(const sf::Event& event, sf::RenderWindow& window) {
 void Button::setTextPosition(const sf::Vector2f &position) {
     buttonText.setPosition(position.x, position.y);
 }
+
+void Button::setFillColor(const sf::Color &color) {
+    buttonShape.setFillColor(color);
+}

@@ -14,6 +14,9 @@ public:
     void setTextPosition(const sf::Vector2f& position);
     bool isClicked(const sf::Event& event, sf::RenderWindow& window);
 
+    void setFillColor(const sf::Color& color);
+
+
 private:
     sf::RectangleShape buttonShape;
     sf::Text buttonText;
