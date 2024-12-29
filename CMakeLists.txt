@@ -16,5 +16,7 @@ add_executable(Pexeso main.cpp
         UI/DimensionButtons.cpp
         Logic/Rules.cpp
         Game/Pexeso.cpp
-        Game/PexesoGrid.cpp)
+        Game/PexesoGrid.cpp
+        Game/Game.cpp
+        Game/PexesoPairs.cpp)
 target_link_libraries(Pexeso sfml-system sfml-window sfml-graphics sfml-network sfml-main pthread)

@@ -6,6 +6,7 @@
 #include "DimensionButtons.h"
 #include "../Logic/Rules.h"
 #include "../Game/PexesoGrid.h"
+#include "../Game/Game.h"
 
 #ifndef PEXESO_WINDOW_H
 #define PEXESO_WINDOW_H
@@ -24,7 +25,7 @@ private:
     DimensionButtons rowButtons;
     DimensionButtons columnButtons;
     Rules rules;
-    PexesoGrid grid;
+    Game singleplayerGame;
     int rowSize = 2;
     int colSize = 2;
     void setRowSize(int row);

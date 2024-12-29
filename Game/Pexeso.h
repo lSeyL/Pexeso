@@ -10,19 +10,27 @@ class Pexeso {
 private:
     sf::RectangleShape shape;
     bool clicked;
-
-
+    sf::Color backColor;
+    sf::Color frontColor;
+    char label;
+    bool revealed;
+    int id;
 public:
-    Pexeso(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Color& color);
-
+    Pexeso(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Color& backColor, const sf::Color& frontColor, char label);
     void draw(sf::RenderWindow& window);
-
     void handleEvent(const sf::Event& event, sf::RenderWindow& window);
-
     bool isClicked(const sf::Vector2i& mousePosition) const;
-
+    bool isClicked() const;
     void setColor(const sf::Color& color);
+    bool isRevealed() const;
+    void reveal();
+    void hide();
+    char getLabel() const;
+    const sf::Color& getColor() const;
     sf::FloatRect getBounds() const;
+
+    int getId() const;
+    void setId(int newId);
 
 };
 

@@ -11,7 +11,6 @@ Window::Window()
           rowButtons(sf::Vector2f(100, 100), sf::Vector2f(50, 50), 9, font),
           columnButtons(sf::Vector2f(100, 200), sf::Vector2f(50, 50), 9, font)
 {
-    grid = PexesoGrid(rowSize, colSize, sf::Vector2f(50, 50), sf::Vector2f(100, 100));
     currentScreen = Screen::MainMenu;
     singleplayerButton.setTextPosition(sf::Vector2f(485,275));
     multiplayerButton.setTextPosition(sf::Vector2f(500,390));
@@ -80,10 +79,10 @@ void Window::handleEvents() {
             setColSize(columnButtons.getSelectedIndex());
         }
 
-        if(currentScreen == Screen::GameSingle)
-        {
-            grid.handleEvent(event,window);
+        if (currentScreen == Screen::GameSingle) {
+            singleplayerGame.handleEvent(event, window);
         }
+
         if(currentScreen == Screen::Multiplayer) {
             if (backButton.isClicked(event, window)) {
                 std::cout << "Back button clicked\n";
@@ -139,8 +138,8 @@ void Window::drawScreens() {
         columnButtons.draw(window);
         rowButtons.draw(window);
     }
-    if(currentScreen == Screen::GameSingle) {
-        grid.draw(window);
+    if (currentScreen == Screen::GameSingle) {
+        singleplayerGame.draw(window);
     }
     if(currentScreen == Screen::Multiplayer) {
         backButton.draw(window);
@@ -159,19 +158,7 @@ void Window::setColSize(int col) {
 }
 
 void Window::gameStart() {
-    int row = rowSize;
-    int col = colSize;
-
-    float windowWidth = window.getSize().x - 200;
-    float windowHeight = window.getSize().y - 200;
-    float tileWidth = windowWidth / col;
-    float tileHeight = windowHeight / row;
-    float tileSize = std::min(tileWidth, tileHeight);
-    float minTileSize = 50.f;
-    float maxTileSize = 150.f;
-    tileSize = std::clamp(tileSize, minTileSize, maxTileSize);
-    grid = PexesoGrid(row, col,
-                      sf::Vector2f(50, 50),
-                      sf::Vector2f(tileSize, tileSize));
+    printf("GameStart");
+    singleplayerGame.start(rowSize, colSize, window);
 }
 

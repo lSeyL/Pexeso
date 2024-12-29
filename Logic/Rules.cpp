@@ -7,6 +7,7 @@
 Rules::Rules() {
     isPaired = false;
     difficulty = 1;
+    mode = 0; // 0 - neobmedzeny, 1 - casovo obmedzeny
 }
 
 bool Rules::checkPair(int rows, int columns) {
@@ -22,7 +23,20 @@ bool Rules::getPairedStatus() {
     return isPaired;
 }
 
+void Rules::setDifficulty(int dif) {
+    difficulty = dif;
+}
+
+void Rules::setMode(int mod) {
+    mode = mod;
+}
+
 int Rules::getDifficulty() {
     return difficulty;
 }
+
+int Rules::getMode() {
+    return mode;
+}
+
 

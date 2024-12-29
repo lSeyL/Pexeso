@@ -4,11 +4,13 @@
 
 #include "Pexeso.h"
 
-Pexeso::Pexeso(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Color& color)
-        : clicked(false) {
+Pexeso::Pexeso(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Color& backColor, const sf::Color& frontColor, char label)
+        : backColor(backColor), frontColor(frontColor), label(label), revealed(false), clicked(false), id(-1) {
     shape.setPosition(position);
     shape.setSize(size);
-    shape.setFillColor(color);
+    shape.setFillColor(backColor);
+
+
 }
 
 void Pexeso::draw(sf::RenderWindow& window) {
@@ -18,8 +20,9 @@ void Pexeso::draw(sf::RenderWindow& window) {
 void Pexeso::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
     if (event.type == sf::Event::MouseButtonPressed) {
         if (isClicked(sf::Mouse::getPosition(window))) {
-            clicked = !clicked;
-            setColor(clicked ? sf::Color::Green : sf::Color::Red);
+            if (!revealed) {
+                reveal();
+            }
         }
     }
 }
@@ -34,4 +37,33 @@ void Pexeso::setColor(const sf::Color& color) {
 
 sf::FloatRect Pexeso::getBounds() const {
     return shape.getGlobalBounds();
+}
+void Pexeso::reveal() {
+    revealed = true;
+    shape.setFillColor(frontColor);
+}
+void Pexeso::hide() {
+    revealed = false;
+    shape.setFillColor(backColor);
+}
+char Pexeso::getLabel() const {
+    return label;
+}
+bool Pexeso::isRevealed() const {
+    return revealed;
+}
+const sf::Color& Pexeso::getColor() const {
+    return shape.getFillColor();
+}
+
+bool Pexeso::isClicked() const {
+    return clicked;
+}
+
+int Pexeso::getId() const {
+    return id;
+}
+
+void Pexeso::setId(int newId) {
+    id = newId;
 }

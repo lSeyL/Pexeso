@@ -5,8 +5,12 @@
 #ifndef PEXESO_PEXESOGRID_H
 #define PEXESO_PEXESOGRID_H
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include <vector>
+#include <algorithm>
+#include <random>
 #include "Pexeso.h"
+#include "PexesoPairs.h"
 
 class PexesoGrid {
 private:
@@ -22,6 +26,7 @@ public:
     void draw(sf::RenderWindow& window);
     void handleEvent(const sf::Event& event, sf::RenderWindow& window);
     std::vector<Pexeso>& getPexesoObjects();
+    template <typename T> void shuffleVector(std::vector<T>& vec);
 };
 
 

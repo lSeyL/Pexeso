@@ -10,11 +10,15 @@ class Rules {
 private:
     bool isPaired;
     int difficulty;
+    int mode;
 public:
     Rules();
     bool checkPair(int rows, int columns);
     bool getPairedStatus();
+    void setDifficulty(int dif);
+    void setMode(int mod);
     int getDifficulty();
+    int getMode();
 };
 
 
