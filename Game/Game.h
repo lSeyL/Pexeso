@@ -13,13 +13,14 @@
 
 class Game {
 private:
-    PexesoGrid grid;
+    PexesoGrid* grid;
     Rules rules;
     int rowSize;
     int colSize;
-    std::vector<std::shared_ptr<Pexeso>> revealedCards;
+    std::vector<Pexeso*> revealedCards;
 public:
     Game();
+    ~Game();
     void start(int rows, int cols, const sf::RenderWindow& window);
     void handleEvent(const sf::Event& event, sf::RenderWindow& window);
     void draw(sf::RenderWindow& window);

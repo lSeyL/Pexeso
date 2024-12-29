@@ -25,7 +25,7 @@ private:
     DimensionButtons rowButtons;
     DimensionButtons columnButtons;
     Rules rules;
-    Game singleplayerGame;
+    Game* singleplayerGame;
     int rowSize = 2;
     int colSize = 2;
     void setRowSize(int row);

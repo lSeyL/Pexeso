@@ -14,7 +14,7 @@
 class PexesoPairs{
 public:
     PexesoPairs();
-    void generatePairs(std::vector<std::pair<sf::Color, char>>& pairs, int rows, int columns);
+    void generatePairs(std::vector<std::tuple<int, sf::Color, char>>& pairs, int rows, int columns);
 
 private:
     void shuffleVector(std::vector<std::pair<sf::Color, char>>& pairs);

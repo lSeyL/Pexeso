@@ -12,6 +12,8 @@
 #include <memory>
 #include "Pexeso.h"
 #include "PexesoPairs.h"
+#include <cstdlib>
+#include <ctime>
 
 class PexesoGrid {
 private:
@@ -19,16 +21,17 @@ private:
     int columns;
     sf::Vector2f startPosition;
     sf::Vector2f pexesoSize;
-    std::vector<std::shared_ptr<Pexeso>> pexesoObjects;
+    std::vector<Pexeso*> pexesoObjects;
 public:
     PexesoGrid();
+    ~PexesoGrid();
     PexesoGrid(int rows, int columns, const sf::Vector2f& startPosition, const sf::Vector2f& pexesoSize);
     void generateGrid();
     void draw(sf::RenderWindow& window);
     void handleEvent(const sf::Event& event, sf::RenderWindow& window);
-    //std::vector<Pexeso>& getPexesoObjects();
-    std::vector<std::shared_ptr<Pexeso>>& getPexesoObjects();
+    std::vector<Pexeso*>& getPexesoObjects();
     template <typename T> void shuffleVector(std::vector<T>& vec);
+    void log();
 
     void shuffleGrid();
 };

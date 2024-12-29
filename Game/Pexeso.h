@@ -6,6 +6,7 @@
 #define PEXESO_PEXESO_H
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 class Pexeso {
 private:
     sf::RectangleShape shape;
@@ -15,6 +16,8 @@ private:
     char label;
     bool revealed;
     int id;
+    sf::Text textLabel;
+    sf::Font font;
 public:
     Pexeso(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Color& backColor, const sf::Color& frontColor, char label);
     void draw(sf::RenderWindow& window);

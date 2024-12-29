@@ -4,9 +4,13 @@
 
 #include "Game.h"
 Game::Game()
-
 {
 }
+
+Game::~Game() {
+    delete grid;
+}
+
 
 void Game::start(int rows, int cols, const sf::RenderWindow& window) {
     rowSize = rows;
@@ -21,14 +25,15 @@ void Game::start(int rows, int cols, const sf::RenderWindow& window) {
     float maxTileSize = 150.f;
     tileSize = std::clamp(tileSize, minTileSize, maxTileSize);
 
-    grid = PexesoGrid(rowSize, colSize, sf::Vector2f(50, 50), sf::Vector2f(tileSize, tileSize));
-   // grid.shuffleGrid();
+    grid = new PexesoGrid(rowSize, colSize, sf::Vector2f(50, 50), sf::Vector2f(tileSize, tileSize));
+   grid->shuffleGrid();
 }
 
 void Game::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
     static sf::Clock revealTimer;
     static bool waitingToHide = false;
     static bool inputDisabled = false;
+    static bool waitingForMatch = false;
 
     if (inputDisabled) {
         if (waitingToHide && revealTimer.getElapsedTime().asSeconds() > 1.0f) {
@@ -44,9 +49,9 @@ void Game::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
         return;
     }
 
-    grid.handleEvent(event, window);
+    grid->handleEvent(event, window);
     revealedCards.clear();
-    for (auto& card : grid.getPexesoObjects()) {
+    for (auto& card : grid->getPexesoObjects()) {
         if (card->isRevealed()) {
             revealedCards.push_back(card);
         }
@@ -57,6 +62,7 @@ void Game::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
         if (revealedCards[0]->getId() == revealedCards[1]->getId()) {
             printf("0ID %d, %d", revealedCards[0]->getId(), revealedCards[0]->getColor().toInteger());
             printf("1ID %d, %d", revealedCards[1]->getId(), revealedCards[1]->getColor().toInteger());
+
             revealedCards[0]->hide();
             revealedCards[1]->hide();
             revealedCards[0]->setColor(sf::Color::Transparent);
@@ -75,5 +81,8 @@ void Game::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
 }
 
 void Game::draw(sf::RenderWindow& window) {
-    grid.draw(window);
+    //grid->shuffleVector(grid->getPexesoObjects());
+    grid->draw(window);
 }
+
+

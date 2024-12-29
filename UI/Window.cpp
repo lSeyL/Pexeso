@@ -11,6 +11,7 @@ Window::Window()
           rowButtons(sf::Vector2f(100, 100), sf::Vector2f(50, 50), 9, font),
           columnButtons(sf::Vector2f(100, 200), sf::Vector2f(50, 50), 9, font)
 {
+    singleplayerGame = new Game();
     currentScreen = Screen::MainMenu;
     singleplayerButton.setTextPosition(sf::Vector2f(485,275));
     multiplayerButton.setTextPosition(sf::Vector2f(500,390));
@@ -29,7 +30,7 @@ Window::Window()
 }
 
 Window::~Window() {
-
+    delete singleplayerGame;
 }
 
 void Window::handleEvents() {
@@ -80,7 +81,7 @@ void Window::handleEvents() {
         }
 
         if (currentScreen == Screen::GameSingle) {
-            singleplayerGame.handleEvent(event, window);
+            singleplayerGame->handleEvent(event, window);
         }
 
         if(currentScreen == Screen::Multiplayer) {
@@ -139,7 +140,7 @@ void Window::drawScreens() {
         rowButtons.draw(window);
     }
     if (currentScreen == Screen::GameSingle) {
-        singleplayerGame.draw(window);
+        singleplayerGame->draw(window);
     }
     if(currentScreen == Screen::Multiplayer) {
         backButton.draw(window);
@@ -158,7 +159,6 @@ void Window::setColSize(int col) {
 }
 
 void Window::gameStart() {
-    printf("GameStart");
-    singleplayerGame.start(rowSize, colSize, window);
+    singleplayerGame->start(rowSize, colSize, window);
 }
 

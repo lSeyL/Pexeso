@@ -7,7 +7,6 @@ set(SFML_DIR C:/SFML/SFML-2.6.2/lib/cmake/SFML)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 find_package(SFML COMPONENTS system window graphics network main REQUIRED)
 
-
 add_executable(Pexeso main.cpp
         UI/Window.cpp
         UI/Button.cpp
@@ -19,4 +18,5 @@ add_executable(Pexeso main.cpp
         Game/PexesoGrid.cpp
         Game/Game.cpp
         Game/PexesoPairs.cpp)
+
 target_link_libraries(Pexeso sfml-system sfml-window sfml-graphics sfml-network sfml-main pthread)
