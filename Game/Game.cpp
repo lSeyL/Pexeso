@@ -4,7 +4,7 @@
 
 #include "Game.h"
 Game::Game()
-        : rowSize(2), colSize(2)
+
 {
 }
 
@@ -22,6 +22,7 @@ void Game::start(int rows, int cols, const sf::RenderWindow& window) {
     tileSize = std::clamp(tileSize, minTileSize, maxTileSize);
 
     grid = PexesoGrid(rowSize, colSize, sf::Vector2f(50, 50), sf::Vector2f(tileSize, tileSize));
+   // grid.shuffleGrid();
 }
 
 void Game::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
@@ -46,17 +47,25 @@ void Game::handleEvent(const sf::Event& event, sf::RenderWindow& window) {
     grid.handleEvent(event, window);
     revealedCards.clear();
     for (auto& card : grid.getPexesoObjects()) {
-        if (card.isRevealed()) {
-            revealedCards.push_back(&card);
+        if (card->isRevealed()) {
+            revealedCards.push_back(card);
         }
     }
+
     if (revealedCards.size() == 2) {
         inputDisabled = true;
         if (revealedCards[0]->getId() == revealedCards[1]->getId()) {
             printf("0ID %d, %d", revealedCards[0]->getId(), revealedCards[0]->getColor().toInteger());
             printf("1ID %d, %d", revealedCards[1]->getId(), revealedCards[1]->getColor().toInteger());
+            revealedCards[0]->hide();
+            revealedCards[1]->hide();
+            revealedCards[0]->setColor(sf::Color::Transparent);
+            revealedCards[1]->setColor(sf::Color::Transparent);
+
             revealedCards.clear();
             inputDisabled = false;
+            revealTimer.restart();
+            waitingToHide = true;
         } else {
             std::cout << "Not a pair." << std::endl;
             revealTimer.restart();

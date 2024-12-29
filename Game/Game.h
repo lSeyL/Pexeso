@@ -17,7 +17,7 @@ private:
     Rules rules;
     int rowSize;
     int colSize;
-    std::vector<Pexeso*> revealedCards;
+    std::vector<std::shared_ptr<Pexeso>> revealedCards;
 public:
     Game();
     void start(int rows, int cols, const sf::RenderWindow& window);

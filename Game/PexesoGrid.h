@@ -9,6 +9,7 @@
 #include <vector>
 #include <algorithm>
 #include <random>
+#include <memory>
 #include "Pexeso.h"
 #include "PexesoPairs.h"
 
@@ -18,15 +19,18 @@ private:
     int columns;
     sf::Vector2f startPosition;
     sf::Vector2f pexesoSize;
-    std::vector<Pexeso> pexesoObjects;
+    std::vector<std::shared_ptr<Pexeso>> pexesoObjects;
 public:
     PexesoGrid();
     PexesoGrid(int rows, int columns, const sf::Vector2f& startPosition, const sf::Vector2f& pexesoSize);
     void generateGrid();
     void draw(sf::RenderWindow& window);
     void handleEvent(const sf::Event& event, sf::RenderWindow& window);
-    std::vector<Pexeso>& getPexesoObjects();
+    //std::vector<Pexeso>& getPexesoObjects();
+    std::vector<std::shared_ptr<Pexeso>>& getPexesoObjects();
     template <typename T> void shuffleVector(std::vector<T>& vec);
+
+    void shuffleGrid();
 };
 
 

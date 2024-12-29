@@ -41,7 +41,6 @@ void PexesoPairs::generatePairs(std::vector<std::pair<sf::Color, char>>& pairs, 
         basePairs.insert(basePairs.end(), basePairs.begin(), basePairs.end());
     }
     basePairs.resize(requiredPairs);
-
     pairs.reserve(requiredPairs * 2);
     for (const auto& pair : basePairs) {
         pairs.push_back(pair);
